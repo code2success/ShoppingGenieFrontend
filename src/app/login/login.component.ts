@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +10,8 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
   login : FormGroup;
   message :string = "";
-  constructor(private fb : FormBuilder, private loginService : LoginService) {
+  
+  constructor(private fb : FormBuilder, private loginService : LoginService, private router : Router) {
     this.createForm();
    }
 
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
     let loggedin =  this.loginService.login(this.login.get("username").value,this.login.get("password").value);
     if(loggedin == true){
       this.message = "logged in ";
+      this.router.navigateByUrl('/shopping');
 
     }else
     {
