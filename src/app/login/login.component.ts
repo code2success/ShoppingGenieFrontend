@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
     }else
     {
       this.message = "wrong username or password";
+      this.login.controls['username'].setValue(null);
+      this.login.controls['password'].setValue(null);
     }
   }
   cancelPressed(){
@@ -43,6 +45,11 @@ export class LoginComponent implements OnInit {
     this.login.get("username").setValue("");
     this.login.get("password").setValue("");
   }
+  onKeydown(event) {
+    if (event.key === "Enter") {
+     this.loginPressed();
+    }
+  } 
   }
 
 
